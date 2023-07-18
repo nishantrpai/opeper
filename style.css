@@ -11,6 +11,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   --black: #000;
+  --ltblack: #333;
   --ltgrey: #888;
   --dkgrey: #1a1a1a;
   --white: #fff;
@@ -33,7 +34,7 @@ body {
   width: max-content;
   height: max-content;
   margin: auto;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 
 #twitter, #generated {
@@ -44,16 +45,9 @@ body {
   width: max-content;
   height: max-content;
   padding: 20px;
-  border: 1px solid red;
+  border: 1px solid var(--ltblack);
 }
 
-#twitter img {
-  border: 1px solid blue;
-}
-
-#generated svg {
-  border: 1px solid blue;
-}
 
 #twitter input {
   outline: none;
