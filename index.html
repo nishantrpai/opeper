@@ -1,13 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+  <style>
+    #app {
+      display: flex;
+    }
+
+    #twitter {
+      width: 250px;
+      padding-left: 120px;
+      padding-top: 120px;
+      padding-right: 120px;
+      border: 1px solid red;
+    }
+
+    #generated {
+      width: 250px;
+      padding-left: 120px;
+      padding-top: 120px;
+      padding-right: 120px;
+      background-color: #010101;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="twitter">
+      <img src="https://nitter.lacontrevoie.fr/pic/pbs.twimg.com%2Fprofile_images%2F1680990034789560320%2FRyjI1HRG_400x400.jpg"/>
+    </div>
+    <div id="generated">
+      <svg class="border rounded-md aspect-auto border-white/10" viewBox="0 0 1025 1531" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path id="left-eye" class="cursor-pointer"
+          d="M0.363281 0.15625H255.137C395.844 0.15625 509.91 114.222 509.91 254.93C509.91 395.637 395.844 509.703 255.137 509.703C114.429 509.703 0.363281 395.637 0.363281 254.93V0.15625Z"
+          fill="#97A043"></path>
+        <rect class="cursor-pointer" id="right-eye" x="511.211" y="0.15625" width="508.254" height="508.254"
+          rx="254.127" fill="#97A043"></rect>
+        <path id="jaw" class="cursor-pointer"
+          d="M0.363281 510.449H1024.28V766.429C1024.28 907.803 909.677 1022.41 768.303 1022.41H256.343C114.969 1022.41 0.363281 907.803 0.363281 766.429V510.449Z"
+          fill="#A08385"></path>
+        <path id="chest" class="cursor-pointer"
+          d="M0.363281 1530.45H1019.46C1019.46 1390.9 906.33 1277.77 766.78 1277.77H253.04C113.491 1277.77 0.363281 1390.9 0.363281 1530.45Z"
+          fill="#CBE98F"></path>
+        <path id="left-shoulder" class="cursor-pointer"
+          d="M0.363281 1530.45H254.785V1277.77C115.236 1277.77 0.363281 1390.9 0.363281 1530.45Z" fill="#78C543"></path>
+        <path id="right-shoulder" class="cursor-pointer"
+          d="M1017.3 1530.45H762.875V1277.77V1277.77C902.425 1277.77 1017.3 1390.9 1017.3 1530.45V1530.45Z"
+          fill="#78C543"></path>
+        <path id="left-iris" class="cursor-pointer"
+          d="M509.906 255.303C509.906 288.81 503.316 321.988 490.513 352.944C477.709 383.9 458.943 412.027 435.285 435.719C411.628 459.412 383.542 478.206 352.632 491.028C321.721 503.851 288.592 510.45 255.135 510.45C221.678 510.45 188.548 503.851 157.638 491.028C126.728 478.206 98.6418 459.412 74.9841 435.719C51.3264 412.027 32.5601 383.9 19.7566 352.944C6.95313 321.988 0.363278 288.81 0.363281 255.303L255.135 255.303H509.906Z"
+          fill="#F3A4C1"></path>
+        <path id="left-pupil" class="cursor-pointer"
+          d="M509.91 255.303C509.91 288.81 503.348 321.988 490.599 352.944C477.85 383.9 459.163 412.027 435.605 435.719C412.047 459.412 384.081 478.206 353.301 491.028C322.522 503.851 289.532 510.45 256.217 510.45L256.217 255.303H509.91Z"
+          fill="#242121"></path>
+        <path id="right-iris" class="cursor-pointer"
+          d="M1017.3 255.303C1017.3 288.81 1010.75 321.988 998.035 352.944C985.319 383.9 966.68 412.027 943.183 435.719C919.687 459.412 891.792 478.206 861.092 491.028C830.392 503.851 797.487 510.45 764.258 510.45C731.028 510.45 698.124 503.851 667.424 491.028C636.724 478.206 608.829 459.412 585.332 435.719C561.835 412.027 543.197 383.9 530.48 352.944C517.764 321.988 511.219 288.81 511.219 255.303L764.258 255.303H1017.3Z"
+          fill="#F3A4C1"></path>
+        <path id="right-pupil" class="cursor-pointer"
+          d="M1019.48 255.303C1019.48 288.81 1012.89 321.988 1000.09 352.944C987.282 383.9 968.515 412.027 944.856 435.719C921.197 459.412 893.11 478.206 862.199 491.028C831.287 503.851 798.156 510.45 764.697 510.45L764.697 255.303H1019.48Z"
+          fill="#242121"></path>
+        <path class="cursor-pointer" id="mouth" d="M255.137 510.449H765.332V1022.41H255.137V510.449Z" fill="#D2DA8F">
+        </path>
+      </svg>
+    </div>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
 </html>
