@@ -46,6 +46,8 @@ body {
   height: max-content;
   padding: 20px;
   border: 1px solid var(--ltblack);
+  border-radius: 0px 20px 20px 20px;
+  drop-shadow: 0px 0px 10px var(--ltblack);
 }
 
 
@@ -57,6 +59,12 @@ body {
   margin: auto;
   background-color: var(--dkgrey);
   border-radius: 0px 20px 20px 20px;
+  border: 1px solid var(--ltblack);
+  transition: filter 300ms;
+}
+
+#twitter input:focus {
+  filter: drop-shadow(0 0 2em var(--ltblack));  
 }
 
 #generated button {
@@ -70,6 +78,13 @@ body {
   color: var(--white);
   cursor: pointer;
   border-radius: 0px 20px 20px 20px;
+  filter: none;
+  border: 1px solid var(--ltblack);
+  transition: filter 300ms;
+}
+
+#generated button:hover {
+  filter: drop-shadow(0 0 2em var(--ltblack));  
 }
 
 @media screen and (max-width: 950px) {
