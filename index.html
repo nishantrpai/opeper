@@ -7,36 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite App</title>
   <style>
-    #app {
-      display: flex;
-    }
-
-    #twitter {
-      width: 250px;
-      padding-left: 120px;
-      padding-top: 120px;
-      padding-right: 120px;
-      border: 1px solid red;
-    }
-
-    #generated {
-      width: 250px;
-      padding-left: 120px;
-      padding-top: 120px;
-      padding-right: 120px;
-      background-color: #010101;
-      border: 1px solid red;
-    }
   </style>
 </head>
 
 <body>
   <div id="app">
     <div id="twitter">
-      <img src="https://nitter.lacontrevoie.fr/pic/pbs.twimg.com%2Fprofile_images%2F1680990034789560320%2FRyjI1HRG_400x400.jpg"/>
+      <img
+        src="https://nitter.lacontrevoie.fr/pic/pbs.twimg.com%2Fprofile_images%2F1680990034789560320%2FRyjI1HRG_400x400.jpg" />
+      <input type="text" placeholder="Twitter username for e.g., @jack" />
     </div>
     <div id="generated">
-      <svg class="border rounded-md aspect-auto border-white/10" viewBox="0 0 1025 1531" fill="none"
+      <svg class="border rounded-md aspect-auto border-white/10" viewBox="0 0 1000 1531" fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <path id="left-eye" class="cursor-pointer"
           d="M0.363281 0.15625H255.137C395.844 0.15625 509.91 114.222 509.91 254.93C509.91 395.637 395.844 509.703 255.137 509.703C114.429 509.703 0.363281 395.637 0.363281 254.93V0.15625Z"
@@ -69,6 +51,7 @@
         <path class="cursor-pointer" id="mouth" d="M255.137 510.449H765.332V1022.41H255.137V510.449Z" fill="#D2DA8F">
         </path>
       </svg>
+      <button>Download</button>
     </div>
   </div>
   <script type="module" src="/main.js"></script>
