@@ -17,7 +17,7 @@ twitterHandle.addEventListener('input', function(e) {
   // add a timeout to prevent too many requests
 let username = e.target.value;
 const xhr = new XMLHttpRequest()
-xhr.open('GET', 'http://localhost:3000/api/twitter?id=' + username);
+xhr.open('GET', 'https://opeper-backend.vercel.app/api/twitter?id=' + username);
 xhr.send();
 
 // handle response
