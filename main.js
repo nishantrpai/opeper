@@ -1,29 +1,19 @@
 import './style.css'
 
-// make xhr request
-const profilePic = document.querySelector('#profile-pic');
-const rightEye = document.querySelector('#right-eye');
-const leftEye = document.querySelector('#left-eye');
-const leftIris = document.querySelector('#left-iris');
-const rightIris = document.querySelector('#right-iris');
-const chest = document.querySelector('#chest');
-const jaw = document.querySelector('#jaw');
-const leftShoulder = document.querySelector('#left-shoulder');
-const rightShoulder = document.querySelector('#right-shoulder');
+const twitterHandle = document.querySelector('#twitter-handle');
 const opepebackground = document.querySelector('svg');
-const twitterHandle  = document.querySelector('#twitter-handle');
-// on input change
-twitterHandle.addEventListener('input', function(e) {
-  // add a timeout to prevent too many requests
-let username = e.target.value;
-const xhr = new XMLHttpRequest()
-xhr.open('GET', 'https://opeper-backend.vercel.app/api/twitter?id=' + username);
-xhr.send();
+const profilePic = document.querySelector('#profile-pic');
 
-// handle response
-xhr.onload = function() {
-  let { colors, img } = JSON.parse(xhr.response);
-  console.log(colors);
+function setSpecs(img, colors) {
+  const rightEye = document.querySelector('#right-eye');
+  const leftEye = document.querySelector('#left-eye');
+  const leftIris = document.querySelector('#left-iris');
+  const rightIris = document.querySelector('#right-iris');
+  const chest = document.querySelector('#chest');
+  const jaw = document.querySelector('#jaw');
+  const leftShoulder = document.querySelector('#left-shoulder');
+  const rightShoulder = document.querySelector('#right-shoulder');
+
   rightShoulder.style.fill = colors[1];
   chest.style.fill = colors[0];
   leftShoulder.style.fill = colors[1];
@@ -36,4 +26,36 @@ xhr.onload = function() {
   opepebackground.style.background = colors[5];
   profilePic.src = img;
 }
-});
+
+// make xhr request
+// on input change
+
+window.onload = function () {
+  opepebackground.style.visibility = "hidden";
+  profilePic.style.visibility = "hidden";
+  const xhr = new XMLHttpRequest()
+  xhr.open('GET', 'https://opeper-backend.vercel.app/api/twitter?id=elonmusk');
+  xhr.send();
+  xhr.onload = function () {
+    let { colors, img } = JSON.parse(xhr.response);
+    console.log(colors);
+    setSpecs(img, colors);
+    opepebackground.style.visibility = "visible";
+    profilePic.style.visibility = "visible";
+  }
+}
+
+  twitterHandle.addEventListener('input', function (e) {
+    // add a timeout to prevent too many requests
+    let username = e.target.value;
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', 'https://opeper-backend.vercel.app/api/twitter?id=' + username);
+    xhr.send();
+
+    // handle response
+    xhr.onload = function () {
+      let { colors, img } = JSON.parse(xhr.response);
+      console.log(colors);
+      setSpecs(img, colors);
+    }
+  });
