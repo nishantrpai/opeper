@@ -9,7 +9,7 @@ let typingTimer = null, loadingTimer = null;
 const PROD = 'https://opeper-backend.vercel.app/api/twitter?id=';
 const LOCAL = 'http://localhost:3000/api/twitter?id=';
 
-const API = LOCAL;
+const API = PROD;GScalar
 
 function setSpecs(img, colors) {
   const rightEye = document.querySelector('#right-eye');
