@@ -1,5 +1,9 @@
 import './style.css'
 
+let username = window.location.href.split('=')[1] || 'elonmusk';
+
+document.querySelector('meta[property="og:image"]').setAttribute('content', `https://opeper-backend.vercel.app/api/og?handle=${username}`);
+
 const twitterHandle = document.querySelector('#twitter-handle');
 const opepebackground = document.querySelector('svg');
 const profilePic = document.querySelector('#profile-pic');
