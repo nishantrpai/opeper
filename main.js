@@ -11,31 +11,6 @@ const LOCAL = 'http://localhost:3000/api/twitter?id=';
 
 const API = PROD;
 
-// Call the function to capture the body screenshot and set the og:image meta tag
-// Capture the screenshot of the body element
-const captureBodyScreenshot = () => {
-  html2canvas(document.body).then((canvas) => {
-    // Convert the canvas to a data URL
-    const dataURL = canvas.toDataURL();
-
-    // Create a new meta tag
-    const metaTag = document.createElement('meta');
-    metaTag.setAttribute('property', 'og:image');
-    metaTag.setAttribute('content', dataURL);
-
-    // Find the existing og:image meta tag, if any
-    const existingMetaTag = document.querySelector('meta[property="og:image"]');
-
-    // Remove the existing og:image meta tag, if found
-    if (existingMetaTag) {
-      existingMetaTag.remove();
-    }
-
-    // Append the new og:image meta tag to the head element
-    document.head.appendChild(metaTag);
-  });
-};
-
 
 function setSpecs(img, colors) {
   const rightEye = document.querySelector('#right-eye');
@@ -128,9 +103,11 @@ function removeLoadingAnimation() {
 
 window.onload = function () {
   // get request params handle=elonmusk
-
+  // set og:image meta
   let username = window.location.href.split('=')[1] || 'elonmusk';
-  
+
+  document.querySelector('meta[property="og:image"]').setAttribute('content', `https://opeper-backend.vercel.app/api/og?handle=${username}`);
+
   opepebackground.style.visibility = "hidden";
   profilePic.style.visibility = "hidden";
   const xhr = new XMLHttpRequest()
@@ -141,8 +118,6 @@ window.onload = function () {
   runLoadingAnimation();
 
   xhr.onload = function () {
-    // Call the function to capture the body screenshot and set the og:image meta tag
-    captureBodyScreenshot();
     removeLoadingAnimation();
     let { colors, img } = JSON.parse(xhr.response);
     setSpecs(img, colors);
@@ -179,8 +154,6 @@ function doneTyping(e) {
 
   // handle response
   xhr.onload = function () {
-    // Call the function to capture the body screenshot and set the og:image meta tag
-    captureBodyScreenshot();
     removeLoadingAnimation();
     let { colors, img } = JSON.parse(xhr.response);
     setSpecs(img, colors);
