@@ -62,15 +62,20 @@ function runLoadingAnimation() {
   // go from 0 height to 100% height smoothly
   const twitter = document.querySelector('#twitter');
   const generated = document.querySelector('#generated');
+
+  twitter.style.animation = 'shake 0.75s ease-in-out 0s infinite alternate';
+  generated.style.animation = 'shake 0.75s ease-in-out 0s infinite alternate';
+
   twitter.style.background = '#333';
   generated.style.background = '#333';
-  twitter.style.height = '50px';
-  generated.style.height = '50px';
+  twitter.style.height = '250px';
+  generated.style.height = '250px';
   // sleep for 1 second
+  
   loadingTimer = setTimeout(() => {
     twitter.style.height = '200px';
     generated.style.height = '200px';
-  }, 2000);
+  }, 5000);
 
 }
 
@@ -86,6 +91,9 @@ function removeLoadingAnimation() {
 
   document.querySelector('#twitter').style.background = 'none';
   document.querySelector('#generated').style.background = 'none';
+
+  document.querySelector('#twitter').style.animation = 'none';
+  document.querySelector('#generated').style.animation = 'none';
 
   // set image src
   profilePic.style.visibility = "visible";
