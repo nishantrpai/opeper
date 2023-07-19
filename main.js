@@ -9,7 +9,33 @@ let typingTimer = null, loadingTimer = null;
 const PROD = 'https://opeper-backend.vercel.app/api/twitter?id=';
 const LOCAL = 'http://localhost:3000/api/twitter?id=';
 
-const API = PROD;GScalar
+const API = PROD;
+
+// Call the function to capture the body screenshot and set the og:image meta tag
+// Capture the screenshot of the body element
+const captureBodyScreenshot = () => {
+  html2canvas(document.body).then((canvas) => {
+    // Convert the canvas to a data URL
+    const dataURL = canvas.toDataURL();
+
+    // Create a new meta tag
+    const metaTag = document.createElement('meta');
+    metaTag.setAttribute('property', 'og:image');
+    metaTag.setAttribute('content', dataURL);
+
+    // Find the existing og:image meta tag, if any
+    const existingMetaTag = document.querySelector('meta[property="og:image"]');
+
+    // Remove the existing og:image meta tag, if found
+    if (existingMetaTag) {
+      existingMetaTag.remove();
+    }
+
+    // Append the new og:image meta tag to the head element
+    document.head.appendChild(metaTag);
+  });
+};
+
 
 function setSpecs(img, colors) {
   const rightEye = document.querySelector('#right-eye');
@@ -71,7 +97,7 @@ function runLoadingAnimation() {
   twitter.style.height = '250px';
   generated.style.height = '250px';
   // sleep for 1 second
-  
+
   loadingTimer = setTimeout(() => {
     twitter.style.height = '200px';
     generated.style.height = '200px';
@@ -101,6 +127,10 @@ function removeLoadingAnimation() {
 }
 
 window.onload = function () {
+  // get request params handle=elonmusk
+
+  let username = window.location.href.split('=')[1] || 'elonmusk';
+  
   opepebackground.style.visibility = "hidden";
   profilePic.style.visibility = "hidden";
   const xhr = new XMLHttpRequest()
@@ -111,12 +141,14 @@ window.onload = function () {
   runLoadingAnimation();
 
   xhr.onload = function () {
+    // Call the function to capture the body screenshot and set the og:image meta tag
+    captureBodyScreenshot();
     removeLoadingAnimation();
     let { colors, img } = JSON.parse(xhr.response);
-    console.log(colors);
     setSpecs(img, colors);
     opepebackground.style.visibility = "visible";
     profilePic.style.visibility = "visible";
+
   }
 }
 
@@ -147,9 +179,10 @@ function doneTyping(e) {
 
   // handle response
   xhr.onload = function () {
+    // Call the function to capture the body screenshot and set the og:image meta tag
+    captureBodyScreenshot();
     removeLoadingAnimation();
     let { colors, img } = JSON.parse(xhr.response);
-    console.log(colors);
     setSpecs(img, colors);
   }
 }
