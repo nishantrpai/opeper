@@ -4,12 +4,12 @@ const twitterHandle = document.querySelector('#twitter-handle');
 const opepebackground = document.querySelector('svg');
 const profilePic = document.querySelector('#profile-pic');
 
-let typingTimer = null;
+let typingTimer = null, loadingTimer = null;
 
 const PROD = 'https://opeper-backend.vercel.app/api/twitter?id=';
 const LOCAL = 'http://localhost:3000/api/twitter?id=';
 
-const API = PROD;
+const API = LOCAL;
 
 function setSpecs(img, colors) {
   const rightEye = document.querySelector('#right-eye');
@@ -24,10 +24,10 @@ function setSpecs(img, colors) {
   console.log(colors);
 
   opepebackground.style.background = colors['background'];
-  
+
   leftEye.style.fill = colors['hair'];
   rightEye.style.fill = colors['hair'];
-  
+
 
   leftIris.style.fill = colors['face'];
   rightIris.style.fill = colors['face'];
@@ -35,16 +35,62 @@ function setSpecs(img, colors) {
 
 
   jaw.style.fill = colors['jaw'];
-  
+
   chest.style.fill = colors['chest'];
   rightShoulder.style.fill = colors['shoulder'];
   leftShoulder.style.fill = colors['shoulder'];
-  
+
   profilePic.src = img;
 }
 
 // make xhr request
 // on input change
+
+function runLoadingAnimation() {
+
+  clearTimeout(loadingTimer);
+
+  // show borders 
+  document.querySelector('#twitter').style.border = '1px solid #333';
+  document.querySelector('#twitter').style.borderRadius = '0 20px 20px 20px';
+  document.querySelector('#generated').style.border = '1px solid #333';
+
+  // unset image src
+  profilePic.style.visibility = "hidden";
+  opepebackground.style.visibility = "hidden";
+
+  // go from 0 height to 100% height smoothly
+  const twitter = document.querySelector('#twitter');
+  const generated = document.querySelector('#generated');
+  twitter.style.background = '#333';
+  generated.style.background = '#333';
+  twitter.style.height = '50px';
+  generated.style.height = '50px';
+  // sleep for 1 second
+  loadingTimer = setTimeout(() => {
+    twitter.style.height = '200px';
+    generated.style.height = '200px';
+  }, 2000);
+
+}
+
+function removeLoadingAnimation() {
+  // hide borders
+  clearTimeout(loadingTimer);
+  document.querySelector('#twitter').style.border = 'none';
+  document.querySelector('#generated').style.border = 'none';
+
+  document.querySelector('#twitter').style.height = '100%';
+  document.querySelector('#generated').style.height = '100%';
+
+
+  document.querySelector('#twitter').style.background = 'none';
+  document.querySelector('#generated').style.background = 'none';
+
+  // set image src
+  profilePic.style.visibility = "visible";
+  opepebackground.style.visibility = "visible";
+}
 
 window.onload = function () {
   opepebackground.style.visibility = "hidden";
@@ -52,7 +98,12 @@ window.onload = function () {
   const xhr = new XMLHttpRequest()
   xhr.open('GET', API + 'elonmusk')
   xhr.send();
+
+  // is loading console log
+  runLoadingAnimation();
+
   xhr.onload = function () {
+    removeLoadingAnimation();
     let { colors, img } = JSON.parse(xhr.response);
     console.log(colors);
     setSpecs(img, colors);
@@ -71,8 +122,13 @@ twitterHandle.addEventListener('keyup', async function (e) {
   typingTimer = setTimeout(doneTyping, 1000, e);
 });
 
-function doneTyping (e) {
+function doneTyping(e) {
+  runLoadingAnimation();
+
   let username = e.target.value;
+
+  username = username.replace('@', '');
+  username = username.replace(/ /g, '');
 
   if (username === '') return;
 
@@ -80,8 +136,10 @@ function doneTyping (e) {
   xhr.open('GET', API + username)
   xhr.send();
 
+
   // handle response
   xhr.onload = function () {
+    removeLoadingAnimation();
     let { colors, img } = JSON.parse(xhr.response);
     console.log(colors);
     setSpecs(img, colors);
