@@ -134,7 +134,7 @@ window.onload = function () {
   opepebackground.style.visibility = "hidden";
   profilePic.style.visibility = "hidden";
   const xhr = new XMLHttpRequest()
-  xhr.open('GET', API + 'elonmusk')
+  xhr.open('GET', API + username)
   xhr.send();
 
   // is loading console log
