@@ -27,15 +27,31 @@ body {
 
 #app {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 40px;
   width: max-content;
   height: max-content;
   margin: auto;
   /* border: 1px solid blue; */
 }
+
+#eye-ctr, #jaw-ctr {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  width: max-content;
+}
+
+#jaw-ctr {
+  display: flex;
+  width: 100%;
+  gap: 0px;
+  border: 1px solid var(--ltblack);
+  border-radius: 0px 0px 20px 20px;
+}
+
 
 #twitter, #generated {
   display: flex;
@@ -44,54 +60,100 @@ body {
   gap: 20px;
   width: max-content;
   height: max-content;
-  padding: 20px;
-  border: 1px solid var(--ltblack);
-  border-radius: 0px 20px 20px 20px;
-  drop-shadow: 0px 0px 10px var(--ltblack);
+  padding: 0px;
 }
 
 #twitter img {
   min-width: 400px;
 }
 
-#twitter input {
-  outline: none;
-  border: none;
-  padding: 20px;
-  width: 300px;
-  margin: auto;
-  background-color: var(--dkgrey);
+#twitter img {
   border-radius: 0px 20px 20px 20px;
-  border: 1px solid var(--ltblack);
-  transition: filter 300ms;
 }
 
-#twitter input:focus {
-  filter: drop-shadow(0 0 2em var(--ltblack));  
+#generated svg {
+  border-radius: 20px;
 }
 
-#generated button {
+#jaw-ctr input {
   outline: none;
   border: none;
-  padding: 20px;
+  padding: 20px 20px;
+  width: 80%;
+  flex-basis: 1;
+  background-color: var(--dkgrey);
+  border: 1px solid var(--ltblack);
+  border-radius: 0px 20px 20px 20px;
+  transition: filter 300ms;
+  border-radius: 0px 0px 0px 20px;
+}
+
+
+#jaw-ctr button {
+  outline: none;
+  border: none;
+  padding: 20px 20px;
   border-radius: 20px;
-  width: max-content;
-  margin: auto;
+  width: 20%;
+  flex: 1;
   background-color: var(--dkgrey);
   color: var(--white);
   cursor: pointer;
-  border-radius: 0px 20px 20px 20px;
-  filter: none;
   border: 1px solid var(--ltblack);
+  border-radius: 0px 0px 20px 0px;
+  filter: none;
   transition: filter 300ms;
 }
 
-#generated button:hover {
+#jaw-ctr button:hover {
   filter: drop-shadow(0 0 2em var(--ltblack));  
 }
 
 @media screen and (max-width: 950px) {
   #app {
-    max-width: 450px;
+    zoom: 0.8;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #app {
+    zoom: 0.7;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #app {
+    zoom: 0.6;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #app {
+    zoom: 0.5;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #eye-ctr {
+    zoom: 0.8;
+    margin: auto;
+    font-size: x-large;
+  }
+  #jaw-ctr {
+    zoom: 2;
+    border-radius: 0 0 20px 20px;
+  }
+  #jaw-ctr button, #jaw-ctr input {
+    width: 100%;
+  }
+  #jaw-ctr input {
+    border-radius: 0px;
+  }
+  #jaw-ctr button {
+    border-radius: 0px 0px 20px 20px;
   }
 }
