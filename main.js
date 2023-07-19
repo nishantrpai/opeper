@@ -4,6 +4,8 @@ const twitterHandle = document.querySelector('#twitter-handle');
 const opepebackground = document.querySelector('svg');
 const profilePic = document.querySelector('#profile-pic');
 
+let typingTimer = null;
+
 const PROD = 'https://opeper-backend.vercel.app/api/twitter?id=';
 const LOCAL = 'http://localhost:3000/api/twitter?id=';
 
@@ -19,16 +21,25 @@ function setSpecs(img, colors) {
   const leftShoulder = document.querySelector('#left-shoulder');
   const rightShoulder = document.querySelector('#right-shoulder');
 
-  chest.style.fill = colors[0];
-  rightShoulder.style.fill = colors[1];
-  leftShoulder.style.fill = colors[1];
-  leftIris.style.fill = colors[2];
-  rightIris.style.fill = colors[2];
-  mouth.style.fill = colors[2];
-  jaw.style.fill = colors[3];
-  leftEye.style.fill = colors[4];
-  rightEye.style.fill = colors[4];
-  opepebackground.style.background = colors[5];
+  console.log(colors);
+
+  opepebackground.style.background = colors['background'];
+  
+  leftEye.style.fill = colors['hair'];
+  rightEye.style.fill = colors['hair'];
+  
+
+  leftIris.style.fill = colors['face'];
+  rightIris.style.fill = colors['face'];
+  mouth.style.fill = colors['face'];
+
+
+  jaw.style.fill = colors['jaw'];
+  
+  chest.style.fill = colors['chest'];
+  rightShoulder.style.fill = colors['shoulder'];
+  leftShoulder.style.fill = colors['shoulder'];
+  
   profilePic.src = img;
 }
 
@@ -50,10 +61,21 @@ window.onload = function () {
   }
 }
 
-twitterHandle.addEventListener('input', function (e) {
+twitterHandle.addEventListener('keydown', async function (e) {
   // add a timeout to prevent too many requests
+  clearTimeout(typingTimer);
+});
+
+twitterHandle.addEventListener('keyup', async function (e) {
+  clearTimeout(typingTimer);
+  typingTimer = setTimeout(doneTyping, 1000, e);
+});
+
+function doneTyping (e) {
   let username = e.target.value;
+
   if (username === '') return;
+
   const xhr = new XMLHttpRequest()
   xhr.open('GET', API + username)
   xhr.send();
@@ -64,7 +86,7 @@ twitterHandle.addEventListener('input', function (e) {
     console.log(colors);
     setSpecs(img, colors);
   }
-});
+}
 
 // download svg as png
 const download = document.querySelector('#download');
