@@ -32,7 +32,6 @@ body {
   width: max-content;
   height: max-content;
   margin: auto;
-  /* border: 1px solid blue; */
 }
 
 #eye-ctr, #jaw-ctr {
@@ -48,7 +47,6 @@ body {
   display: flex;
   width: 100%;
   gap: 0px;
-  border: 1px solid var(--ltblack);
   border-radius: 0px 0px 20px 20px;
 }
 
@@ -147,7 +145,6 @@ body {
     zoom: 2;
     gap: 0px;
     border-radius: 0 0 20px 20px;
-    border: none;
   }
   #jaw-ctr button, #jaw-ctr input {
     width: 100%;
